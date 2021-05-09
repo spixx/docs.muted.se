@@ -53,16 +53,33 @@ actual applications hosted within the cluster.
 | vRAM      | 8 GiB    |
 | vHDD      | 100 GiB  |
 
-#### Software
+#### Service
 ##### Rancher
-###### containerd
-###### RKE2
+The software part of the PaaS solution is based upon RKE2 which is a [Rancher](https://landscape.cncf.io/card-mode?grouping=organization&organization=rancher-labs) 
+Labs product. RKE(2) is utilized to perform a installation, configuration and
+maintenance of a Kubernetes cluster. 
+
+![rancher](https://docs.rke2.io/architecture/overview.png)
+
+RKE is utilized to bootstrap the actual [CNCF](https://.cncf.io) compliant 
+Kubernetes cluster.
+
 ##### Loadbalancer
+There are two major components to the cluster, the first would be the API and 
+node management. The second being the access to services hosted ontop of the 
+compute nodes.
+
 ###### HAproxy
+For low level access to the cluster API for management and configuration a TCP
+(OCI Layer 4) loadbalancer is requierd. This will be the frontend of the "Boss"
+nodes that manages all cluster operations.
+
+![nodes-view](diagrams/haproxy-view.svg)
+
 ###### MetalLB
-##### Ansible
-###### Roles
-###### Automation
+For service exposure [MetalLB](https://metallb.universe.tf/) will be utilized. 
+This can expose both TCP/UDP and HTTP(S) services managed by the cluster. Each
+node will announce the IP related to the service and internally route traffic to
+the proper Service.
 
-
-## Configuration
+![nodes-view](diagrams/metallb-view.svg)
