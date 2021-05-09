@@ -27,6 +27,32 @@ the [Ansible](https://www.ansible.com/) configuration management system.
 ### System
 ![system-view](diagrams/system-view.svg)
 
+#### Nodes
+Nodes are installed by the automation and provides a basic platform for our 
+automation via Ansible Roles.
+
+![nodes-view](diagrams/nodes-view.svg)
+
+##### Boss
+Boss nodes runs the so called "control-plane" for Kubernetes and the server 
+daemon for RKE2 clusters.
+
+| Component | Value   |
+| --------- | ------- |
+| vCPU      | 2 cores |
+| vRAM      | 4 GiB   |
+| vHDD      | 40 GiB  |
+
+##### Worker
+Worker nodes will contain the Kubernetes compute components and deliver the 
+actual applications hosted within the cluster.
+
+| Component | Value    |
+| --------- | -------- |
+| vCPU      | 4 cores  |
+| vRAM      | 8 GiB    |
+| vHDD      | 100 GiB  |
+
 #### Software
 ##### Rancher
 ###### containerd
