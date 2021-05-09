@@ -25,8 +25,7 @@ the [Ansible](https://www.ansible.com/) configuration management system.
   * Kubernetes
 
 ### System
-
-![system-view](projects/diagrams/system-view.svg)
+![system-view](diagrams/system-view.svg)
 
 #### Software
 ##### Rancher
